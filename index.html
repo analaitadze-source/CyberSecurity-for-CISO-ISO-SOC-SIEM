@@ -163,10 +163,6 @@
                     <span>CISO & Auditor Quizzes</span>
                 </button>
 
-                <button onclick="switchTab('renewables')" id="tabBtn-renewables" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 transition">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21c-4.5-2-7-5-7-9 0-3.5 2.5-6 7-8 4.5 2 7 4.5 7 8 0 4-2.5 7-7 9zm0 0V10m0 4l4-4"></path></svg>
-                    <span>Renewable Energy Tasks</span>
-                </button>
             </div>
         </nav>
     </header>
@@ -431,7 +427,7 @@
                 <div class="flex items-center justify-between gap-4 mb-6">
                     <div>
                         <h2 class="text-xl font-bold text-slate-100">Clause & Sentence Halves Matcher</h2>
-                        <p class="text-xs text-slate-400 mt-1">Match sentence halves across security, audit, and renewable-energy topics with changing details.</p>
+                        <p class="text-xs text-slate-400 mt-1">Match sentence halves across varied security and audit topics with changing details.</p>
                     </div>
                     <button onclick="renderClauseMatcher()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-cyan-400 border border-slate-700 font-bold rounded-xl text-xs transition">New Matching Trial</button>
                 </div>
@@ -469,49 +465,6 @@
                 <div id="quizQuestionsContainer" class="space-y-6">
                     <!-- Populated dynamically -->
                 </div>
-            </div>
-        </section>
-
-        <!-- TAB 7: RENEWABLE ENERGY ACTIVITIES -->
-        <section id="tab-renewables" class="tab-content hidden space-y-6">
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
-                <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-slate-100">Renewable Energy Matching</h2>
-                        <p class="text-xs text-slate-400 mt-1">Match each changing site profile and operating variable to the renewable technology that fits it.</p>
-                    </div>
-                    <div class="flex items-center gap-4 bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-xs font-mono">
-                        <div>Matches: <span id="renewableMatchScore" class="text-emerald-400 font-bold">0</span> / 5</div>
-                        <button onclick="startRenewableMatchTrial()" class="text-cyan-400 hover:underline">New Matching Trial</button>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div class="space-y-3">
-                        <h3 class="text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">1. Site profile</h3>
-                        <div id="renewableProfilesContainer" class="space-y-2.5"></div>
-                    </div>
-                    <div class="space-y-3">
-                        <h3 class="text-xs font-mono text-emerald-400 uppercase tracking-wider font-semibold">2. Renewable technology</h3>
-                        <div id="renewableOptionsContainer" class="space-y-2.5"></div>
-                    </div>
-                </div>
-                <div id="renewableMatchFeedback" class="mt-6 p-4 rounded-xl text-xs font-mono hidden text-center"></div>
-            </div>
-
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-slate-100">Renewable Energy Quiz</h2>
-                        <p class="text-xs text-slate-400 mt-1">Solve fresh energy and capacity questions; values and answer choices change each trial.</p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <button onclick="startRenewableQuizTrial()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-400 rounded-lg text-xs font-semibold border border-slate-700 transition">New Quiz Trial</button>
-                        <div class="text-xs font-mono bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 text-cyan-400">
-                            Score: <span id="renewableQuizScore">0</span> / <span id="renewableQuizTotal">3</span>
-                        </div>
-                    </div>
-                </div>
-                <div id="renewableQuizContainer" class="space-y-4"></div>
             </div>
         </section>
 
@@ -1529,8 +1482,6 @@
             initIncidentLogs();
             renderClauseMatcher();
             renderQuizzes();
-            startRenewableMatchTrial();
-            startRenewableQuizTrial();
             
             // Keybindings for flashcard navigation
             document.addEventListener('keydown', function(e) {
@@ -1765,14 +1716,22 @@
         /* ==========================================================================
            5. TAB 3: THREAT & CONTROL MATCHER GAME
            ========================================================================== */
-        const matcherPairs = [
-            { threat: "Unencrypted backup SSD decommissioned without authorization", control: "ISO 27001 Annex A.7.14 Secure Disposal of Media" },
-            { threat: "Credential stuffing attack bypassing single-factor auth", control: "Mandatory Multi-Factor Authentication (MFA) & Rate Limiting" },
-            { threat: "Zero-day vulnerability in web application backend API", control: "Web Application Firewall (WAF) & Virtual Patching" },
-            { threat: "Lack of justification for excluding physical controls in audit", control: "Statement of Applicability (SoA) ISO 27001 Clause 6.1.3" },
-            { threat: "Unauthorized wire transfer request spoofed from CEO email", control: "Multi-Person Signature Approval & DMARC/DKIM Enforcements" },
-            { threat: "Ransomware lateral movement across flat cloud subnet", control: "Microsegmentation & Zero Trust Architecture (ZTA)" }
+        const matcherPairTemplates = [
+            { id: 'media-disposal', build: () => ({ threat: 'An unencrypted backup SSD containing customer records is found in an unapproved disposal bin.', control: 'ISO 27001 Annex A.7.14 Secure Disposal of Media' }) },
+            { id: 'credential-stuffing', build: () => ({ threat: `Credential stuffing generates ${randomInt(120, 900)} failed sign-ins against staff accounts in one hour.`, control: 'Mandatory Multi-Factor Authentication (MFA) & Rate Limiting' }) },
+            { id: 'zero-day-api', build: () => ({ threat: `A critical zero-day affects a public API handling ${randomInt(8, 75)} thousand requests per minute.`, control: 'Web Application Firewall (WAF) & Virtual Patching' }) },
+            { id: 'soa-exclusion', build: () => ({ threat: 'An audit finds that excluded physical security controls have no documented risk rationale.', control: 'Statement of Applicability (SoA) ISO 27001 Clause 6.1.3' }) },
+            { id: 'ceo-fraud', build: () => ({ threat: `A spoofed CEO email requests an urgent ${randomInt(20, 850)} thousand dollar wire transfer.`, control: 'Multi-Person Signature Approval & DMARC/DKIM Enforcements' }) },
+            { id: 'ransomware-segmentation', build: () => ({ threat: `Ransomware spreads from one host to ${randomInt(6, 32)} servers on a flat cloud subnet.`, control: 'Microsegmentation & Zero Trust Architecture (ZTA)' }) },
+            { id: 'phishing-mail', build: () => ({ threat: `${randomInt(4, 28)} employees report a phishing email impersonating the payroll provider.`, control: 'Email Filtering, User Reporting & Security Awareness Training' }) },
+            { id: 'lost-device', build: () => ({ threat: `A laptop with ${randomInt(2, 18)} GB of cached business data is reported missing during travel.`, control: 'Full-Disk Encryption & Remote Device-Wipe Procedures' }) },
+            { id: 'patch-delay', build: () => ({ threat: `An internet-facing server remains unpatched ${randomInt(5, 21)} days after a critical vulnerability disclosure.`, control: 'Risk-Based Patch Management & Remediation SLAs' }) },
+            { id: 'privilege-review', build: () => ({ threat: `A quarterly review finds ${randomInt(3, 14)} dormant accounts that still have administrator access.`, control: 'Periodic Access Reviews & Least-Privilege Enforcement' }) },
+            { id: 'cloud-storage', build: () => ({ threat: `A cloud storage bucket containing ${randomInt(300, 9000)} customer files is publicly accessible.`, control: 'Cloud Configuration Monitoring & Default-Deny Access Policies' }) },
+            { id: 'forensic-evidence', build: () => ({ threat: 'Investigators cannot show who handled a disk image after a suspected data breach.', control: 'Documented Forensic Chain of Custody' }) }
         ];
+        let matcherPairs = [];
+        let previousMatcherTrial = '';
 
         function initMatcherGame() {
             state.matcherScore = 0;
@@ -1788,9 +1747,16 @@
             threatsContainer.innerHTML = '';
             controlsContainer.innerHTML = '';
 
-            // Shuffle lists independently
-            const shuffledThreats = [...matcherPairs].sort(() => 0.5 - Math.random());
-            const shuffledControls = [...matcherPairs].sort(() => 0.5 - Math.random());
+            let selectedTemplates = shuffled(matcherPairTemplates).slice(0, 6);
+            let signature = selectedTemplates.map(template => template.id).sort().join('|');
+            if (signature === previousMatcherTrial) {
+                selectedTemplates = [...selectedTemplates.slice(0, 5), shuffled(matcherPairTemplates.filter(template => !selectedTemplates.includes(template)))[0]];
+                signature = selectedTemplates.map(template => template.id).sort().join('|');
+            }
+            previousMatcherTrial = signature;
+            matcherPairs = selectedTemplates.map(template => ({ ...template.build(), id: template.id }));
+            const shuffledThreats = shuffled(matcherPairs);
+            const shuffledControls = shuffled(matcherPairs);
 
             shuffledThreats.forEach((item, idx) => {
                 const div = document.createElement('div');
@@ -2126,8 +2092,6 @@
             { id: 'risk-treatment', build: () => ({ stem: `A supplier risk is scored ${randomInt(12, 25)}/25, above the organization's approved risk appetite, so...`, completion: '...the risk owner documents a treatment decision and obtains the required approval.' }) },
             { id: 'least-privilege', build: () => ({ stem: `A project analyst needs access to ${randomInt(2, 5)} of 20 data folders, so least privilege means...`, completion: '...granting only the access needed for the analyst’s assigned duties.' }) },
             { id: 'stage-one-audit', build: () => ({ stem: 'During a Stage 1 ISO 27001 certification audit, the auditor primarily evaluates...', completion: '...ISMS scope, documented information, policies, and readiness for Stage 2.' }) },
-            { id: 'solar-generation', build: () => { const capacity = randomInt(8, 35); const sunHours = randomInt(3, 7); return { stem: `A ${capacity} MW solar site receives ${sunHours} peak-sun hours per day; its theoretical daily energy is...`, completion: `...${capacity * sunHours} MWh, calculated as capacity multiplied by peak-sun hours.` }; } },
-            { id: 'battery-storage', build: () => { const load = randomInt(4, 12); const hours = randomInt(2, 8); return { stem: `A ${load * hours} MWh battery supplies a steady ${load} MW load, so its ideal duration is...`, completion: `...${hours} hours, before accounting for conversion losses.` }; } },
             { id: 'ransomware-response', build: () => { const minutes = randomInt(10, 40); return { stem: `A ransomware alert is confirmed on a ${minutes}-minute-old endpoint session, and responders must first...`, completion: '...contain the affected host, preserve evidence, and follow the incident response plan.' }; } },
             { id: 'audit-evidence', build: () => { const records = randomInt(10, 40); return { stem: `An auditor samples ${records} access-change records and finds missing approvals; the organization should...`, completion: '...record the non-conformity, investigate its root cause, and track corrective action.' }; } }
         ];
@@ -2248,14 +2212,125 @@
             }
         ];
 
+        const quizQuestionTemplates = [
+            ...quizQuestions.map((question, index) => ({ id: `core-${index}`, build: () => question })),
+            {
+                id: 'access-review',
+                build: () => {
+                    const accounts = randomInt(3, 14);
+                    return {
+                        q: `A quarterly access review finds ${accounts} dormant accounts with administrator privileges. What should the control owner do first?`,
+                        options: ['Retain access until the next annual audit', 'Validate ownership and promptly revoke unnecessary privileges', 'Disable audit logging to prevent further alerts', 'Move the accounts to a shared administrator group'],
+                        correct: 1,
+                        explanation: 'Access should be verified against current business need, and unjustified privileged access should be removed and documented.'
+                    };
+                }
+            },
+            {
+                id: 'critical-patch',
+                build: () => {
+                    const days = randomInt(5, 21);
+                    return {
+                        q: `An internet-facing system is ${days} days behind on a critical security patch. What is the most appropriate governance response?`,
+                        options: ['Prioritize remediation using risk and the approved SLA, documenting any exception', 'Wait for the next annual penetration test', 'Close the vulnerability record because the server is public', 'Disable vulnerability scanning for this system'],
+                        correct: 0,
+                        explanation: 'Exposed critical vulnerabilities should be prioritized against risk-based remediation targets, with exceptions formally assessed and approved.'
+                    };
+                }
+            },
+            {
+                id: 'recovery-target',
+                build: () => {
+                    const target = randomInt(60, 240);
+                    const recovery = randomInt(20, target);
+                    return {
+                        q: `A business service has an approved recovery time objective (RTO) of ${target} minutes. It was restored in ${recovery} minutes. What is the correct conclusion?`,
+                        options: ['The service missed its RTO because it recovered early', `It met the RTO because ${recovery} minutes is within the ${target}-minute target`, 'RTO measures how much data may be lost', 'An RTO is only measured during an ISO audit'],
+                        correct: 1,
+                        explanation: `The recovery time of ${recovery} minutes is within the approved ${target}-minute RTO. RTO measures the target time to restore a service.`
+                    };
+                }
+            },
+            {
+                id: 'incident-detection',
+                build: () => {
+                    const detect = randomInt(4, 28);
+                    const respond = randomInt(12, 55);
+                    return {
+                        q: `The SOC detects an intrusion ${detect} minutes after it begins and contains it ${respond} minutes later. Which metric measures the first interval?`,
+                        options: ['Mean Time to Respond (MTTR)', 'Recovery Point Objective (RPO)', 'Mean Time to Detect (MTTD)', 'Residual Risk'],
+                        correct: 2,
+                        explanation: 'MTTD measures the time from the start of an incident until it is detected; MTTR measures response or containment time.'
+                    };
+                }
+            },
+            {
+                id: 'audit-evidence',
+                build: () => {
+                    const records = randomInt(12, 45);
+                    return {
+                        q: `An auditor samples ${records} access-change records and finds approvals missing from several files. What is the best next step?`,
+                        options: ['Record and investigate the non-conformity, then track corrective action', 'Delete the sample and restart the audit', 'Exclude access control from the ISMS scope', 'Wait for the next certification cycle before taking action'],
+                        correct: 0,
+                        explanation: 'Audit findings should be recorded, investigated for root cause, and addressed through tracked corrective action.'
+                    };
+                }
+            },
+            {
+                id: 'supplier-risk',
+                build: () => {
+                    const score = randomInt(16, 25);
+                    const threshold = randomInt(8, 15);
+                    return {
+                        q: `A supplier risk scores ${score}/25, above the organization's ${threshold}/25 escalation threshold. What should the risk owner do?`,
+                        options: ['Document a treatment decision and obtain the required approval', 'Ignore it because the supplier is external', 'Reclassify it as an opportunity for improvement', 'Remove the supplier from the asset register without review'],
+                        correct: 0,
+                        explanation: 'Risks above the approved threshold need documented treatment or acceptance decisions and appropriate management approval.'
+                    };
+                }
+            },
+            {
+                id: 'phishing-response',
+                build: () => {
+                    const employees = randomInt(5, 32);
+                    return {
+                        q: `${employees} employees receive a credential-harvesting email and two submit passwords. Which response best addresses the immediate risk?`,
+                        options: ['Revoke exposed sessions, reset credentials, and investigate related access', 'Only block the sender and close the incident', 'Wait to see whether the passwords are used', 'Ask recipients to forward the email to colleagues for awareness'],
+                        correct: 0,
+                        explanation: 'Immediately invalidate exposed credentials and sessions, then investigate for unauthorized access and preserve evidence.'
+                    };
+                }
+            },
+            {
+                id: 'business-collocation',
+                build: () => {
+                    const months = randomInt(6, 18);
+                    return {
+                        q: `Which sentence best describes the CISO's plan for the next ${months} months?`,
+                        options: ['The CISO will formulate a risk treatment plan and review its effectiveness.', 'The CISO will do a risk treatment plan and forget its results.', 'The CISO will make up a risk plan after the audit.', 'The CISO will build up the risk without assigning an owner.'],
+                        correct: 0,
+                        explanation: '“Formulate a risk treatment plan” is the appropriate formal governance collocation; plans should also be reviewed.'
+                    };
+                }
+            }
+        ];
+
         let activeQuizQuestions = [];
         let quizUserScore = 0;
         let answeredQuestions = new Set();
+        let previousQuizTrial = '';
 
         function renderQuizzes() {
             const container = document.getElementById('quizQuestionsContainer');
             container.innerHTML = '';
-            activeQuizQuestions = shuffled(quizQuestions).map(question => {
+            let selectedTemplates = shuffled(quizQuestionTemplates).slice(0, 5);
+            let signature = selectedTemplates.map(template => template.id).sort().join('|');
+            if (signature === previousQuizTrial) {
+                selectedTemplates = [...selectedTemplates.slice(0, 4), shuffled(quizQuestionTemplates.filter(template => !selectedTemplates.includes(template)))[0]];
+                signature = selectedTemplates.map(template => template.id).sort().join('|');
+            }
+            previousQuizTrial = signature;
+            activeQuizQuestions = selectedTemplates.map(template => template.build()).map(question => {
                 const options = shuffled(question.options.map((text, optionIndex) => ({ text, optionIndex })));
                 return {
                     ...question,
@@ -2313,158 +2388,6 @@
 
             document.getElementById('quizScore').textContent = quizUserScore;
             document.getElementById(`quizExp-${qIdx}`).classList.remove('hidden');
-        }
-
-        let renewableProfiles = [];
-        let selectedRenewableProfile = null;
-        let renewableMatchedIds = new Set();
-        let renewableQuizQuestions = [];
-        let renewableQuizScore = 0;
-        let renewableAnsweredQuestions = new Set();
-        let previousRenewableQuizSignature = '';
-
-        function startRenewableMatchTrial() {
-            const capacity = (min, max) => randomInt(min, max);
-            renewableProfiles = [
-                { id: 'solar', label: 'Solar PV', description: `A ${capacity(5, 30)} MW array at a site receiving ${capacity(3, 7)} peak-sun hours per day.` },
-                { id: 'wind', label: 'Wind power', description: `A ${capacity(20, 100)} MW turbine site with an average wind speed of ${capacity(6, 12)} m/s.` },
-                { id: 'hydro', label: 'Hydropower', description: `A ${capacity(8, 60)} MW station supplied by a river flowing at ${capacity(20, 120)} m³/s.` },
-                { id: 'geothermal', label: 'Geothermal', description: `A ${capacity(5, 30)} MW plant using an underground reservoir at ${capacity(120, 260)}°C.` },
-                { id: 'biomass', label: 'Biomass', description: `A ${capacity(3, 25)} MW facility processing ${capacity(40, 180)} tonnes of organic feedstock each day.` }
-            ];
-            renewableMatchedIds = new Set();
-            selectedRenewableProfile = null;
-            document.getElementById('renewableMatchScore').textContent = '0';
-            document.getElementById('renewableMatchFeedback').classList.add('hidden');
-
-            const profilesContainer = document.getElementById('renewableProfilesContainer');
-            const optionsContainer = document.getElementById('renewableOptionsContainer');
-            profilesContainer.innerHTML = '';
-            optionsContainer.innerHTML = '';
-
-            shuffled(renewableProfiles).forEach(profile => {
-                const button = document.createElement('button');
-                button.type = 'button';
-                button.dataset.profileId = profile.id;
-                button.className = 'renewable-profile w-full text-left p-3 bg-slate-950 border border-slate-800 hover:border-cyan-500 rounded-xl text-xs text-slate-200 cursor-pointer transition';
-                button.textContent = profile.description;
-                button.onclick = () => selectRenewableProfile(button, profile);
-                profilesContainer.appendChild(button);
-            });
-
-            shuffled(renewableProfiles).forEach(profile => {
-                const button = document.createElement('button');
-                button.type = 'button';
-                button.dataset.optionId = profile.id;
-                button.className = 'renewable-option w-full text-left p-3 bg-slate-950 border border-slate-800 hover:border-emerald-500 rounded-xl text-xs font-mono text-slate-200 cursor-pointer transition';
-                button.textContent = profile.label;
-                button.onclick = () => selectRenewableOption(button, profile);
-                optionsContainer.appendChild(button);
-            });
-        }
-
-        function selectRenewableProfile(button, profile) {
-            if (renewableMatchedIds.has(profile.id)) return;
-            document.querySelectorAll('.renewable-profile').forEach(element => element.classList.remove('border-cyan-500', 'bg-cyan-950/40'));
-            button.classList.add('border-cyan-500', 'bg-cyan-950/40');
-            selectedRenewableProfile = profile;
-        }
-
-        function selectRenewableOption(button, option) {
-            if (!selectedRenewableProfile || renewableMatchedIds.has(option.id)) return;
-            const feedback = document.getElementById('renewableMatchFeedback');
-            feedback.classList.remove('hidden', 'bg-emerald-950/80', 'text-emerald-400', 'border-emerald-500', 'bg-rose-950/80', 'text-rose-400', 'border-rose-500', 'border');
-            if (selectedRenewableProfile.id === option.id) {
-                renewableMatchedIds.add(option.id);
-                document.querySelector(`[data-profile-id="${option.id}"]`).classList.add('opacity-40', 'pointer-events-none', 'bg-emerald-950');
-                button.classList.add('opacity-40', 'pointer-events-none', 'bg-emerald-950');
-                document.getElementById('renewableMatchScore').textContent = renewableMatchedIds.size;
-                feedback.classList.add('bg-emerald-950/80', 'text-emerald-400', 'border', 'border-emerald-500');
-                feedback.textContent = renewableMatchedIds.size === renewableProfiles.length ? 'All five renewable technologies matched. Start a new trial to get fresh profiles.' : 'Correct match. Select another site profile.';
-                selectedRenewableProfile = null;
-                document.querySelectorAll('.renewable-profile').forEach(element => element.classList.remove('border-cyan-500', 'bg-cyan-950/40'));
-            } else {
-                feedback.classList.add('bg-rose-950/80', 'text-rose-400', 'border', 'border-rose-500');
-                feedback.textContent = 'Not quite. Keep the profile selected and try another technology.';
-            }
-        }
-
-        function makeEnergyOptions(answer, unit, step) {
-            const values = [answer, answer + step, answer - step, answer + step * 2];
-            return shuffled([...new Set(values.filter(value => value > 0))].map(value => `${value} ${unit}`));
-        }
-
-        function createRenewableQuizQuestion() {
-            const solarCapacity = randomInt(6, 24);
-            const sunHours = randomInt(3, 7);
-            const windCapacity = randomInt(20, 80);
-            const capacityFactor = [25, 30, 35, 40, 45, 50, 55][randomInt(0, 6)];
-            const batteryCapacity = randomInt(12, 72);
-            const batteryLoad = randomInt(3, 12);
-            const solarOutput = solarCapacity * sunHours;
-            const windOutput = Math.round(windCapacity * 24 * capacityFactor / 100);
-            const storageHours = Math.floor(batteryCapacity / batteryLoad);
-            return [
-                {
-                    q: `A ${solarCapacity} MW solar farm receives ${sunHours} peak-sun hours today. What is its theoretical energy output before losses?`,
-                    options: makeEnergyOptions(solarOutput, 'MWh', 1),
-                    correct: `${solarOutput} MWh`,
-                    explanation: `Theoretical output is capacity × peak-sun hours: ${solarCapacity} MW × ${sunHours} h = ${solarOutput} MWh.`
-                },
-                {
-                    q: `A ${windCapacity} MW wind farm operates at a ${capacityFactor}% capacity factor for 24 hours. Approximately how much energy does it produce?`,
-                    options: makeEnergyOptions(windOutput, 'MWh', 24),
-                    correct: `${windOutput} MWh`,
-                    explanation: `${windCapacity} MW × 24 h × ${capacityFactor}% = approximately ${windOutput} MWh.`
-                },
-                {
-                    q: `A battery stores ${batteryCapacity} MWh and supplies a constant ${batteryLoad} MW load. Approximately how many full hours can it supply?`,
-                    options: makeEnergyOptions(storageHours, 'hours', 1),
-                    correct: `${storageHours} hours`,
-                    explanation: `Divide stored energy by power: ${batteryCapacity} MWh ÷ ${batteryLoad} MW is approximately ${storageHours} hours.`
-                }
-            ];
-        }
-
-        function startRenewableQuizTrial() {
-            renewableQuizQuestions = createRenewableQuizQuestion();
-            let signature = renewableQuizQuestions.map(question => question.q).join('|');
-            while (signature === previousRenewableQuizSignature) {
-                renewableQuizQuestions = createRenewableQuizQuestion();
-                signature = renewableQuizQuestions.map(question => question.q).join('|');
-            }
-            previousRenewableQuizSignature = signature;
-            renewableQuizScore = 0;
-            renewableAnsweredQuestions = new Set();
-            document.getElementById('renewableQuizScore').textContent = '0';
-            document.getElementById('renewableQuizTotal').textContent = renewableQuizQuestions.length;
-            const container = document.getElementById('renewableQuizContainer');
-            container.innerHTML = '';
-
-            renewableQuizQuestions.forEach((question, questionIndex) => {
-                const options = shuffled(question.options.map((text, optionIndex) => ({ text, optionIndex })));
-                question.correctIndex = options.findIndex(option => option.text === question.correct);
-                const card = document.createElement('div');
-                card.className = 'bg-slate-950 border border-slate-800 rounded-xl p-5 space-y-3';
-                card.innerHTML = `<div class="text-xs font-mono text-cyan-400 font-bold">QUESTION ${questionIndex + 1} OF ${renewableQuizQuestions.length}</div><p class="text-sm text-slate-100 font-semibold leading-relaxed">${escapeHtml(question.q)}</p><div class="space-y-2">${options.map((option, optionIndex) => `<button type="button" onclick="answerRenewableQuiz(${questionIndex}, ${optionIndex}, this)" class="renewable-quiz-opt-${questionIndex} w-full text-left p-3 rounded-lg border border-slate-800 bg-slate-900 hover:bg-slate-800 text-xs text-slate-200 transition">${escapeHtml(option.text)}</button>`).join('')}</div><div id="renewableQuizExp-${questionIndex}" class="hidden p-3 rounded-lg bg-slate-900 border border-cyan-500/30 text-xs text-slate-300 leading-relaxed">${escapeHtml(question.explanation)}</div>`;
-                container.appendChild(card);
-            });
-        }
-
-        function answerRenewableQuiz(questionIndex, optionIndex, button) {
-            if (renewableAnsweredQuestions.has(questionIndex)) return;
-            renewableAnsweredQuestions.add(questionIndex);
-            const question = renewableQuizQuestions[questionIndex];
-            const options = document.querySelectorAll(`.renewable-quiz-opt-${questionIndex}`);
-            if (optionIndex === question.correctIndex) {
-                renewableQuizScore++;
-                button.classList.add('border-emerald-500', 'bg-emerald-950/80', 'text-emerald-300');
-            } else {
-                button.classList.add('border-rose-500', 'bg-rose-950/80', 'text-rose-300');
-                options[question.correctIndex].classList.add('border-emerald-500', 'bg-emerald-950/40');
-            }
-            document.getElementById('renewableQuizScore').textContent = renewableQuizScore;
-            document.getElementById(`renewableQuizExp-${questionIndex}`).classList.remove('hidden');
         }
 
         /* ==========================================================================
