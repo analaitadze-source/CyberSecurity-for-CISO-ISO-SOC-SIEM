@@ -371,7 +371,7 @@
                         <div class="text-slate-700">|</div>
                         <div>Streak: <span id="matcherStreak" class="text-emerald-400 font-bold">0</span></div>
                         <div class="text-slate-700">|</div>
-                        <button onclick="initMatcherGame()" class="text-cyan-400 hover:underline text-xs">Reset Game</button>
+                        <button onclick="initMatcherGame()" class="text-cyan-400 hover:underline text-xs">New Trial</button>
                     </div>
                 </div>
 
@@ -1717,18 +1717,18 @@
            5. TAB 3: THREAT & CONTROL MATCHER GAME
            ========================================================================== */
         const matcherPairTemplates = [
-            { id: 'media-disposal', build: () => ({ threat: 'An unencrypted backup SSD containing customer records is found in an unapproved disposal bin.', control: 'ISO 27001 Annex A.7.14 Secure Disposal of Media' }) },
-            { id: 'credential-stuffing', build: () => ({ threat: `Credential stuffing generates ${randomInt(120, 900)} failed sign-ins against staff accounts in one hour.`, control: 'Mandatory Multi-Factor Authentication (MFA) & Rate Limiting' }) },
-            { id: 'zero-day-api', build: () => ({ threat: `A critical zero-day affects a public API handling ${randomInt(8, 75)} thousand requests per minute.`, control: 'Web Application Firewall (WAF) & Virtual Patching' }) },
-            { id: 'soa-exclusion', build: () => ({ threat: 'An audit finds that excluded physical security controls have no documented risk rationale.', control: 'Statement of Applicability (SoA) ISO 27001 Clause 6.1.3' }) },
-            { id: 'ceo-fraud', build: () => ({ threat: `A spoofed CEO email requests an urgent ${randomInt(20, 850)} thousand dollar wire transfer.`, control: 'Multi-Person Signature Approval & DMARC/DKIM Enforcements' }) },
-            { id: 'ransomware-segmentation', build: () => ({ threat: `Ransomware spreads from one host to ${randomInt(6, 32)} servers on a flat cloud subnet.`, control: 'Microsegmentation & Zero Trust Architecture (ZTA)' }) },
-            { id: 'phishing-mail', build: () => ({ threat: `${randomInt(4, 28)} employees report a phishing email impersonating the payroll provider.`, control: 'Email Filtering, User Reporting & Security Awareness Training' }) },
-            { id: 'lost-device', build: () => ({ threat: `A laptop with ${randomInt(2, 18)} GB of cached business data is reported missing during travel.`, control: 'Full-Disk Encryption & Remote Device-Wipe Procedures' }) },
-            { id: 'patch-delay', build: () => ({ threat: `An internet-facing server remains unpatched ${randomInt(5, 21)} days after a critical vulnerability disclosure.`, control: 'Risk-Based Patch Management & Remediation SLAs' }) },
-            { id: 'privilege-review', build: () => ({ threat: `A quarterly review finds ${randomInt(3, 14)} dormant accounts that still have administrator access.`, control: 'Periodic Access Reviews & Least-Privilege Enforcement' }) },
-            { id: 'cloud-storage', build: () => ({ threat: `A cloud storage bucket containing ${randomInt(300, 9000)} customer files is publicly accessible.`, control: 'Cloud Configuration Monitoring & Default-Deny Access Policies' }) },
-            { id: 'forensic-evidence', build: () => ({ threat: 'Investigators cannot show who handled a disk image after a suspected data breach.', control: 'Documented Forensic Chain of Custody' }) }
+            { id: 'media-disposal', build: () => ({ threat: `An unencrypted backup SSD containing ${randomInt(2, 18)} GB of customer records is found in an unapproved disposal bin.`, control: 'Use an approved secure-wiping process and retain a destruction certificate for each device.' }) },
+            { id: 'credential-stuffing', build: () => ({ threat: `Credential stuffing generates ${randomInt(120, 900)} failed sign-ins against staff accounts in one hour.`, control: `Require multi-factor authentication and rate-limit sign-ins after ${randomInt(4, 9)} failed attempts.` }) },
+            { id: 'zero-day-api', build: () => ({ threat: `A critical zero-day affects a public API handling ${randomInt(8, 75)} thousand requests per minute.`, control: `Deploy a web application firewall virtual patch immediately and apply the vendor fix within ${randomInt(1, 5)} days.` }) },
+            { id: 'soa-exclusion', build: () => ({ threat: `An audit finds ${randomInt(2, 7)} excluded physical security controls with no documented risk rationale.`, control: 'Update the Statement of Applicability with a risk-based rationale and obtain control-owner approval.' }) },
+            { id: 'ceo-fraud', build: () => ({ threat: `A spoofed CEO email requests an urgent ${randomInt(20, 850)} thousand dollar wire transfer.`, control: `Require dual authorization for transfers above $${randomInt(10, 100)} thousand and enforce DMARC/DKIM.` }) },
+            { id: 'ransomware-segmentation', build: () => ({ threat: `Ransomware spreads from one host to ${randomInt(6, 32)} servers on a flat cloud subnet.`, control: `Apply microsegmentation and Zero Trust; isolate affected hosts within ${randomInt(5, 20)} minutes.` }) },
+            { id: 'phishing-mail', build: () => ({ threat: `${randomInt(4, 28)} employees report a phishing email impersonating the payroll provider.`, control: `Quarantine reported messages, analyze their indicators, and brief staff within ${randomInt(1, 4)} hours.` }) },
+            { id: 'lost-device', build: () => ({ threat: `A laptop with ${randomInt(2, 18)} GB of cached business data is reported missing during travel.`, control: `Enforce full-disk encryption and remotely revoke access and wipe the device within ${randomInt(10, 60)} minutes.` }) },
+            { id: 'patch-delay', build: () => ({ threat: `An internet-facing server remains unpatched ${randomInt(5, 21)} days after a critical vulnerability disclosure.`, control: `Prioritize risk-based patching and remediate internet-facing critical flaws within ${randomInt(2, 7)} days.` }) },
+            { id: 'privilege-review', build: () => ({ threat: `A quarterly review finds ${randomInt(3, 14)} dormant accounts that still have administrator access.`, control: `Remove unjustified privileges and review administrator access every ${randomInt(1, 3)} months.` }) },
+            { id: 'cloud-storage', build: () => ({ threat: `A cloud storage bucket containing ${randomInt(300, 9000)} customer files is publicly accessible.`, control: `Set storage to private by default and scan cloud configurations every ${randomInt(1, 12)} hours.` }) },
+            { id: 'forensic-evidence', build: () => ({ threat: `Investigators cannot verify who handled a disk image ${randomInt(2, 8)} days after a suspected data breach.`, control: 'Maintain a signed chain-of-custody log with timestamps and a verified evidence hash at each transfer.' }) }
         ];
         let matcherPairs = [];
         let previousMatcherTrial = '';
