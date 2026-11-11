@@ -162,6 +162,11 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
                     <span>CISO & Auditor Quizzes</span>
                 </button>
+
+                <button onclick="switchTab('renewables')" id="tabBtn-renewables" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21c-4.5-2-7-5-7-9 0-3.5 2.5-6 7-8 4.5 2 7 4.5 7 8 0 4-2.5 7-7 9zm0 0V10m0 4l4-4"></path></svg>
+                    <span>Renewable Energy Tasks</span>
+                </button>
             </div>
         </nav>
     </header>
@@ -405,93 +410,15 @@
                         <h2 class="text-xl font-bold text-slate-100">SOC & ISO Audit Incident Logs</h2>
                         <p class="text-xs text-slate-400 mt-1">Fill in the blanks with target ISO 27001 certification terms, CIA triad breaches, and executive ESP collocations.</p>
                     </div>
-                    <button onclick="checkGapFillAnswers()" class="px-5 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-xs transition shadow-lg shadow-emerald-500/20">
-                        Validate Responses
-                    </button>
+                    <div class="flex items-center gap-3">
+                        <button onclick="initIncidentLogs()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-cyan-400 border border-slate-700 font-bold rounded-xl text-xs transition">New Incident Trial</button>
+                        <button onclick="checkGapFillAnswers()" class="px-5 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-xs transition shadow-lg shadow-emerald-500/20">
+                            Validate Responses
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Interactive Memos Container -->
-                <div class="space-y-6">
-                    
-                    <!-- Memo 1: ISO Audit Report -->
-                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-5 space-y-3">
-                        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                            <span class="text-xs font-mono text-cyan-400 font-bold">LOG #01: ISO/IEC 27001 Lead Audit Non-Conformity Notice</span>
-                            <span class="text-[10px] font-mono text-slate-500">ISO 27001:2022 Clause 6.1.2</span>
-                        </div>
-                        <p class="text-sm text-slate-300 leading-relaxed">
-                            During the Stage 2 certification audit, the Lead Auditor observed that while the organization established an 
-                            <select id="gap-1" class="gap-input bg-slate-900 border border-slate-700 text-cyan-400 rounded px-2 py-1 text-xs focus:border-cyan-500">
-                                <option value="">-- Choose Term --</option>
-                                <option value="Information Security Management System (ISMS)">Information Security Management System (ISMS)</option>
-                                <option value="Statement of Applicability (SoA)">Statement of Applicability (SoA)</option>
-                                <option value="Buffer Overflow">Buffer Overflow</option>
-                            </select>, 
-                            the documented 
-                            <select id="gap-2" class="gap-input bg-slate-900 border border-slate-700 text-cyan-400 rounded px-2 py-1 text-xs focus:border-cyan-500">
-                                <option value="">-- Choose Term --</option>
-                                <option value="Statement of Applicability (SoA)">Statement of Applicability (SoA)</option>
-                                <option value="Root Cause Analysis (RCA)">Root Cause Analysis (RCA)</option>
-                                <option value="Drive-by Download">Drive-by Download</option>
-                            </select> 
-                            failed to justify the exclusion of Annex A controls regarding encryption key management. This finding was classified as a 
-                            <select id="gap-3" class="gap-input bg-slate-900 border border-slate-700 text-cyan-400 rounded px-2 py-1 text-xs focus:border-cyan-500">
-                                <option value="">-- Choose Term --</option>
-                                <option value="Non-Conformity">Non-Conformity</option>
-                                <option value="Honeypot">Honeypot</option>
-                                <option value="Credential Stuffing">Credential Stuffing</option>
-                            </select>, 
-                            requiring top management to execute a mandatory 
-                            <select id="gap-4" class="gap-input bg-slate-900 border border-slate-700 text-cyan-400 rounded px-2 py-1 text-xs focus:border-cyan-500">
-                                <option value="">-- Choose Term --</option>
-                                <option value="Corrective Action">Corrective Action</option>
-                                <option value="Symmetric Encryption">Symmetric Encryption</option>
-                                <option value="Malvertising">Malvertising</option>
-                            </select> 
-                            plan within 30 days.
-                        </p>
-                    </div>
-
-                    <!-- Memo 2: Incident Response Memo -->
-                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-5 space-y-3">
-                        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                            <span class="text-xs font-mono text-emerald-400 font-bold">LOG #02: CISO Incident Briefing - Ransomware Threat</span>
-                            <span class="text-[10px] font-mono text-slate-500">Incident Severity: CRITICAL</span>
-                        </div>
-                        <p class="text-sm text-slate-300 leading-relaxed">
-                            At 03:14 UTC, SOC telemetry flagged an unauthorized payload exfiltrating corporate databases. The breach severely compromised system 
-                            <select id="gap-5" class="gap-input bg-slate-900 border border-slate-700 text-emerald-400 rounded px-2 py-1 text-xs focus:border-cyan-500">
-                                <option value="">-- Choose Term --</option>
-                                <option value="Confidentiality">Confidentiality</option>
-                                <option value="Non-Repudiation">Non-Repudiation</option>
-                                <option value="Acceptable Use Policy (AUP)">Acceptable Use Policy (AUP)</option>
-                            </select>. 
-                            To mitigate lateral movement, DFIR personnel enforced 
-                            <select id="gap-6" class="gap-input bg-slate-900 border border-slate-700 text-emerald-400 rounded px-2 py-1 text-xs focus:border-cyan-500">
-                                <option value="">-- Choose Term --</option>
-                                <option value="Zero Trust Architecture (ZTA)">Zero Trust Architecture (ZTA)</option>
-                                <option value="Inherent Risk">Inherent Risk</option>
-                                <option value="Buffer Overflow">Buffer Overflow</option>
-                            </select> 
-                            principles and isolated affected subnets using 
-                            <select id="gap-7" class="gap-input bg-slate-900 border border-slate-700 text-emerald-400 rounded px-2 py-1 text-xs focus:border-cyan-500">
-                                <option value="">-- Choose Term --</option>
-                                <option value="Microsegmentation">Microsegmentation</option>
-                                <option value="Risk Appetite">Risk Appetite</option>
-                                <option value="Management Review">Management Review</option>
-                            </select>. 
-                            The team successfully reduced the 
-                            <select id="gap-8" class="gap-input bg-slate-900 border border-slate-700 text-emerald-400 rounded px-2 py-1 text-xs focus:border-cyan-500">
-                                <option value="">-- Choose Term --</option>
-                                <option value="Mean Time to Respond (MTTR)">Mean Time to Respond (MTTR)</option>
-                                <option value="Asset Register">Asset Register</option>
-                                <option value="Public Key Infrastructure (PKI)">Public Key Infrastructure (PKI)</option>
-                            </select> 
-                            to under 18 minutes.
-                        </p>
-                    </div>
-
-                </div>
+                <div id="incidentLogsContainer" class="space-y-6"></div>
 
                 <div id="gapFillResults" class="hidden p-4 rounded-xl bg-slate-950 border border-cyan-500/30 text-xs font-mono"></div>
             </div>
@@ -504,8 +431,9 @@
                 <div class="flex items-center justify-between gap-4 mb-6">
                     <div>
                         <h2 class="text-xl font-bold text-slate-100">Clause & Sentence Halves Matcher</h2>
-                        <p class="text-xs text-slate-400 mt-1">Pair security governance clause stems with their correct executive conclusions.</p>
+                        <p class="text-xs text-slate-400 mt-1">Match sentence halves across security, audit, and renewable-energy topics with changing details.</p>
                     </div>
+                    <button onclick="renderClauseMatcher()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-cyan-400 border border-slate-700 font-bold rounded-xl text-xs transition">New Matching Trial</button>
                 </div>
 
                 <div id="clausePairsContainer" class="space-y-3">
@@ -530,14 +458,60 @@
                         <h2 class="text-xl font-bold text-slate-100">CISO & Lead Auditor Strategic Quizzes</h2>
                         <p class="text-xs text-slate-400 mt-1">Boardroom and ISO 27001 audit scenarios testing executive decisions and formal ESP vocabulary.</p>
                     </div>
-                    <div id="quizScoreBadge" class="text-xs font-mono bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 text-cyan-400">
-                        Score: <span id="quizScore">0</span> / <span id="quizTotal">10</span>
+                    <div class="flex items-center gap-3">
+                        <button onclick="renderQuizzes()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-400 rounded-lg text-xs font-semibold border border-slate-700 transition">New Quiz Trial</button>
+                        <div id="quizScoreBadge" class="text-xs font-mono bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 text-cyan-400">
+                            Score: <span id="quizScore">0</span> / <span id="quizTotal">5</span>
+                        </div>
                     </div>
                 </div>
 
                 <div id="quizQuestionsContainer" class="space-y-6">
                     <!-- Populated dynamically -->
                 </div>
+            </div>
+        </section>
+
+        <!-- TAB 7: RENEWABLE ENERGY ACTIVITIES -->
+        <section id="tab-renewables" class="tab-content hidden space-y-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-100">Renewable Energy Matching</h2>
+                        <p class="text-xs text-slate-400 mt-1">Match each changing site profile and operating variable to the renewable technology that fits it.</p>
+                    </div>
+                    <div class="flex items-center gap-4 bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-xs font-mono">
+                        <div>Matches: <span id="renewableMatchScore" class="text-emerald-400 font-bold">0</span> / 5</div>
+                        <button onclick="startRenewableMatchTrial()" class="text-cyan-400 hover:underline">New Matching Trial</button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="space-y-3">
+                        <h3 class="text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">1. Site profile</h3>
+                        <div id="renewableProfilesContainer" class="space-y-2.5"></div>
+                    </div>
+                    <div class="space-y-3">
+                        <h3 class="text-xs font-mono text-emerald-400 uppercase tracking-wider font-semibold">2. Renewable technology</h3>
+                        <div id="renewableOptionsContainer" class="space-y-2.5"></div>
+                    </div>
+                </div>
+                <div id="renewableMatchFeedback" class="mt-6 p-4 rounded-xl text-xs font-mono hidden text-center"></div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-100">Renewable Energy Quiz</h2>
+                        <p class="text-xs text-slate-400 mt-1">Solve fresh energy and capacity questions; values and answer choices change each trial.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button onclick="startRenewableQuizTrial()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-400 rounded-lg text-xs font-semibold border border-slate-700 transition">New Quiz Trial</button>
+                        <div class="text-xs font-mono bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 text-cyan-400">
+                            Score: <span id="renewableQuizScore">0</span> / <span id="renewableQuizTotal">3</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="renewableQuizContainer" class="space-y-4"></div>
             </div>
         </section>
 
@@ -1552,8 +1526,11 @@
             renderCard();
             renderGlossaryTable();
             initMatcherGame();
+            initIncidentLogs();
             renderClauseMatcher();
             renderQuizzes();
+            startRenewableMatchTrial();
+            startRenewableQuizTrial();
             
             // Keybindings for flashcard navigation
             document.addEventListener('keydown', function(e) {
@@ -1885,16 +1862,240 @@
         /* ==========================================================================
            6. TAB 4: SOC & ISO INCIDENT LOGS (GAP FILL VALIDATION)
            ========================================================================== */
-        const gapKey = {
-            'gap-1': 'Information Security Management System (ISMS)',
-            'gap-2': 'Statement of Applicability (SoA)',
-            'gap-3': 'Non-Conformity',
-            'gap-4': 'Corrective Action',
-            'gap-5': 'Confidentiality',
-            'gap-6': 'Zero Trust Architecture (ZTA)',
-            'gap-7': 'Microsegmentation',
-            'gap-8': 'Mean Time to Respond (MTTR)'
-        };
+        function shuffled(items) {
+            const result = [...items];
+            for (let i = result.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [result[i], result[j]] = [result[j], result[i]];
+            }
+            return result;
+        }
+
+        function randomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function escapeHtml(value) {
+            return String(value).replace(/[&<>"']/g, character => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            })[character]);
+        }
+
+        const incidentLogTemplates = [
+            {
+                id: 'audit-soa',
+                category: 'audit',
+                title: 'ISO/IEC 27001 Lead Audit Notice',
+                meta: 'ISO 27001:2022 Clause 6.1.3',
+                build: () => {
+                    const stage = randomInt(1, 2);
+                    const days = randomInt(20, 45);
+                    return {
+                        parts: [
+                            `During the Stage ${stage} certification audit, the team found that the organization had established an `,
+                            `, but its documented `,
+                            ` did not justify excluding selected Annex A controls. The auditor recorded a `,
+                            ` and required a documented `,
+                            ` plan within ${days} days.`
+                        ],
+                        gaps: [
+                            { answer: 'Information Security Management System (ISMS)', options: ['Statement of Applicability (SoA)', 'Buffer Overflow'] },
+                            { answer: 'Statement of Applicability (SoA)', options: ['Root Cause Analysis (RCA)', 'Drive-by Download'] },
+                            { answer: 'Non-Conformity', options: ['Honeypot', 'Credential Stuffing'] },
+                            { answer: 'Corrective Action', options: ['Symmetric Encryption', 'Malvertising'] }
+                        ]
+                    };
+                }
+            },
+            {
+                id: 'audit-risk',
+                category: 'audit',
+                title: 'Risk Treatment Audit Notice',
+                meta: 'ISO 27001:2022 Clauses 6.1.2–6.1.3',
+                build: () => {
+                    const score = randomInt(16, 25);
+                    return {
+                        parts: [
+                            `An internal audit found an untreated supplier risk scored ${score}/25 in the current `,
+                            `. The assigned `,
+                            ` had not approved a `,
+                            `, and no evidence showed that the expected `,
+                            ` had been reviewed.`
+                        ],
+                        gaps: [
+                            { answer: 'Risk Assessment', options: ['Asset Register', 'Acceptable Use Policy (AUP)'] },
+                            { answer: 'Risk Owner', options: ['External Auditor', 'Data Processor'] },
+                            { answer: 'Risk Treatment Plan', options: ['Business Continuity Plan (BCP)', 'Statement of Applicability (SoA)'] },
+                            { answer: 'Residual Risk', options: ['Inherent Risk', 'Threat Intelligence Feed'] }
+                        ]
+                    };
+                }
+            },
+            {
+                id: 'audit-evidence',
+                category: 'audit',
+                title: 'Internal Audit Evidence Notice',
+                meta: 'ISO 27001:2022 Clauses 9.2 and 10.2',
+                build: () => {
+                    const sampleCount = randomInt(8, 24);
+                    return {
+                        parts: [
+                            `During a review of ${sampleCount} access-change records, the `,
+                            ` found that several approvals lacked `,
+                            `. The gap was raised as a `,
+                            `, and the control owner was asked to complete a `,
+                            ` before the next management review.`
+                        ],
+                        gaps: [
+                            { answer: 'Internal Audit', options: ['Penetration Test', 'Management Review'] },
+                            { answer: 'Documented Information', options: ['Encryption Key', 'Threat Intelligence'] },
+                            { answer: 'Non-Conformity', options: ['Residual Risk', 'Zero-Day Vulnerability'] },
+                            { answer: 'Root Cause Analysis (RCA)', options: ['Risk Appetite', 'Multi-Factor Authentication (MFA)'] }
+                        ]
+                    };
+                }
+            },
+            {
+                id: 'threat-ransomware',
+                category: 'threat',
+                title: 'SOC Incident Log: Ransomware',
+                meta: 'Severity: Critical',
+                build: () => {
+                    const time = `${String(randomInt(0, 23)).padStart(2, '0')}:${String(randomInt(0, 59)).padStart(2, '0')} UTC`;
+                    const minutes = randomInt(12, 38);
+                    return {
+                        parts: [
+                            `At ${time}, SOC telemetry detected ransomware attempting to exfiltrate customer files, threatening data `,
+                            `. Responders enforced `,
+                            ` and isolated affected hosts through `,
+                            `. The incident team's `,
+                            ` reached ${minutes} minutes.`
+                        ],
+                        gaps: [
+                            { answer: 'Confidentiality', options: ['Availability', 'Non-Repudiation'] },
+                            { answer: 'Zero Trust Architecture (ZTA)', options: ['Risk Appetite', 'Inherent Risk'] },
+                            { answer: 'Microsegmentation', options: ['Management Review', 'Asset Register'] },
+                            { answer: 'Mean Time to Respond (MTTR)', options: ['Statement of Applicability (SoA)', 'Recovery Point Objective (RPO)'] }
+                        ]
+                    };
+                }
+            },
+            {
+                id: 'threat-phishing',
+                category: 'threat',
+                title: 'SOC Incident Log: Phishing Campaign',
+                meta: 'Severity: High',
+                build: () => {
+                    const users = randomInt(3, 18);
+                    return {
+                        parts: [
+                            `Mail gateway alerts showed ${users} employees had received a credential-harvesting message. The SOC classified the activity as `,
+                            `, revoked exposed sessions, and required `,
+                            ` for affected accounts. Analysts preserved message headers as `,
+                            ` and updated detection rules to reduce `,
+                            ` for future attempts.`
+                        ],
+                        gaps: [
+                            { answer: 'Phishing', options: ['Buffer Overflow', 'Denial of Service'] },
+                            { answer: 'Multi-Factor Authentication (MFA)', options: ['Risk Treatment Plan', 'Public Key Infrastructure (PKI)'] },
+                            { answer: 'Digital Evidence', options: ['Risk Appetite', 'Statement of Applicability (SoA)'] },
+                            { answer: 'Mean Time to Detect (MTTD)', options: ['Mean Time to Respond (MTTR)', 'Recovery Time Objective (RTO)'] }
+                        ]
+                    };
+                }
+            },
+            {
+                id: 'threat-cloud-outage',
+                category: 'threat',
+                title: 'SOC Incident Log: Cloud Service Outage',
+                meta: 'Severity: Major',
+                build: () => {
+                    const duration = randomInt(25, 95);
+                    return {
+                        parts: [
+                            `A cloud-region failure interrupted customer services for ${duration} minutes, affecting system `,
+                            `. The response team activated the `,
+                            `, restored core workloads under the `,
+                            `, and documented recovery evidence for the `,
+                            `.`
+                        ],
+                        gaps: [
+                            { answer: 'Availability', options: ['Confidentiality', 'Non-Repudiation'] },
+                            { answer: 'Business Continuity Plan (BCP)', options: ['Acceptable Use Policy (AUP)', 'Risk Assessment'] },
+                            { answer: 'Disaster Recovery Plan (DRP)', options: ['Statement of Applicability (SoA)', 'Incident Response Plan'] },
+                            { answer: 'Management Review', options: ['Threat Hunting', 'Credential Stuffing'] }
+                        ]
+                    };
+                }
+            },
+            {
+                id: 'threat-bruteforce',
+                category: 'threat',
+                title: 'SOC Incident Log: Authentication Attack',
+                meta: 'Severity: Elevated',
+                build: () => {
+                    const attempts = randomInt(120, 900);
+                    return {
+                        parts: [
+                            `SIEM correlation identified ${attempts} repeated password attempts against a privileged account, indicating a `,
+                            `. The identity provider applied `,
+                            ` and temporary account lockout, while the security team verified `,
+                            ` on all administrator accounts and recorded actions in the `,
+                            `.`
+                        ],
+                        gaps: [
+                            { answer: 'Brute-Force Attack', options: ['Drive-by Download', 'Buffer Overflow'] },
+                            { answer: 'Rate Limiting', options: ['Microsegmentation', 'Data Masking'] },
+                            { answer: 'Multi-Factor Authentication (MFA)', options: ['Risk Appetite', 'Residual Risk'] },
+                            { answer: 'Incident Response Plan', options: ['Statement of Applicability (SoA)', 'Asset Register'] }
+                        ]
+                    };
+                }
+            }
+        ];
+
+        let gapKey = {};
+        let previousIncidentTrial = { audit: [], threat: [] };
+
+        function pickIncidentTemplates(category, count) {
+            const previousIds = previousIncidentTrial[category];
+            const candidates = incidentLogTemplates.filter(template =>
+                template.category === category && !previousIds.includes(template.id)
+            );
+            return shuffled(candidates).slice(0, count);
+        }
+
+        function renderIncidentLog(template, logNumber) {
+            const log = template.build();
+            const accent = template.category === 'audit' ? 'text-cyan-400' : 'text-emerald-400';
+            const body = log.parts.map((part, index) => {
+                if (index >= log.gaps.length) return escapeHtml(part);
+                const id = `gap-${Object.keys(gapKey).length + 1}`;
+                const gap = log.gaps[index];
+                gapKey[id] = gap.answer;
+                const options = shuffled([gap.answer, ...gap.options]);
+                return `${escapeHtml(part)}<select id="${id}" class="gap-input bg-slate-900 border border-slate-700 ${accent} rounded px-2 py-1 text-xs focus:border-cyan-500"><option value="">-- Choose Term --</option>${options.map(option => `<option value="${escapeHtml(option)}">${escapeHtml(option)}</option>`).join('')}</select>`;
+            }).join('');
+
+            return `<div class="bg-slate-950 border border-slate-800 rounded-xl p-5 space-y-3"><div class="flex items-center justify-between border-b border-slate-800 pb-2"><span class="text-xs font-mono ${accent} font-bold">LOG #${String(logNumber).padStart(2, '0')}: ${escapeHtml(template.title)}</span><span class="text-[10px] font-mono text-slate-500">${escapeHtml(template.meta)}</span></div><p class="text-sm text-slate-300 leading-relaxed">${body}</p></div>`;
+        }
+
+        function initIncidentLogs() {
+            const audit = pickIncidentTemplates('audit', 1);
+            const threats = pickIncidentTemplates('threat', 2);
+            previousIncidentTrial = {
+                audit: audit.map(template => template.id),
+                threat: threats.map(template => template.id)
+            };
+            gapKey = {};
+            document.getElementById('incidentLogsContainer').innerHTML = [...audit, ...threats]
+                .map((template, index) => renderIncidentLog(template, index + 1)).join('');
+            document.getElementById('gapFillResults').classList.add('hidden');
+        }
 
         function checkGapFillAnswers() {
             let correct = 0;
@@ -1920,18 +2121,34 @@
         /* ==========================================================================
            7. TAB 5: CLAUSE MATCHER (SENTENCE HALVES)
            ========================================================================== */
-        const clauseData = [
-            { id: 1, stem: "According to ISO 27001 Clause 9.3, top management must review the ISMS at planned intervals to ensure...", completion: "...its continuing suitability, adequacy, and operational effectiveness." },
-            { id: 2, stem: "If an organization identifies an unmitigated risk that exceeds its established risk appetite,...", completion: "...management must formulate a formal risk treatment plan or allocate resources." },
-            { id: 3, stem: "Enforcing the principle of least privilege ensures that users are granted permissions...", completion: "...strictly limited to what is necessary for performing their assigned job duties." },
-            { id: 4, stem: "During a Stage 1 ISO certification audit, the auditor primarily evaluates...", completion: "...the organization's ISMS documentation, scope, and policy readiness." }
+        const clauseTemplates = [
+            { id: 'isms-review', build: () => ({ stem: `Top management reviews the ISMS every ${randomInt(6, 18)} months to ensure...`, completion: '...its continuing suitability, adequacy, and operational effectiveness.' }) },
+            { id: 'risk-treatment', build: () => ({ stem: `A supplier risk is scored ${randomInt(12, 25)}/25, above the organization's approved risk appetite, so...`, completion: '...the risk owner documents a treatment decision and obtains the required approval.' }) },
+            { id: 'least-privilege', build: () => ({ stem: `A project analyst needs access to ${randomInt(2, 5)} of 20 data folders, so least privilege means...`, completion: '...granting only the access needed for the analyst’s assigned duties.' }) },
+            { id: 'stage-one-audit', build: () => ({ stem: 'During a Stage 1 ISO 27001 certification audit, the auditor primarily evaluates...', completion: '...ISMS scope, documented information, policies, and readiness for Stage 2.' }) },
+            { id: 'solar-generation', build: () => { const capacity = randomInt(8, 35); const sunHours = randomInt(3, 7); return { stem: `A ${capacity} MW solar site receives ${sunHours} peak-sun hours per day; its theoretical daily energy is...`, completion: `...${capacity * sunHours} MWh, calculated as capacity multiplied by peak-sun hours.` }; } },
+            { id: 'battery-storage', build: () => { const load = randomInt(4, 12); const hours = randomInt(2, 8); return { stem: `A ${load * hours} MWh battery supplies a steady ${load} MW load, so its ideal duration is...`, completion: `...${hours} hours, before accounting for conversion losses.` }; } },
+            { id: 'ransomware-response', build: () => { const minutes = randomInt(10, 40); return { stem: `A ransomware alert is confirmed on a ${minutes}-minute-old endpoint session, and responders must first...`, completion: '...contain the affected host, preserve evidence, and follow the incident response plan.' }; } },
+            { id: 'audit-evidence', build: () => { const records = randomInt(10, 40); return { stem: `An auditor samples ${records} access-change records and finds missing approvals; the organization should...`, completion: '...record the non-conformity, investigate its root cause, and track corrective action.' }; } }
         ];
+
+        let clauseData = [];
+        let previousClauseTrial = '';
 
         function renderClauseMatcher() {
             const container = document.getElementById('clausePairsContainer');
             container.innerHTML = '';
+            let selectedTemplates = shuffled(clauseTemplates).slice(0, 4);
+            let signature = selectedTemplates.map(template => template.id).sort().join('|');
+            if (signature === previousClauseTrial) {
+                selectedTemplates = [...selectedTemplates.slice(0, 3), shuffled(clauseTemplates.filter(template => !selectedTemplates.includes(template)))[0]];
+                signature = selectedTemplates.map(template => template.id).sort().join('|');
+            }
+            previousClauseTrial = signature;
+            clauseData = selectedTemplates.map((template, index) => ({ id: index + 1, ...template.build() }));
+            document.getElementById('clauseFeedback').classList.add('hidden');
 
-            const shuffledCompletions = [...clauseData].map(c => c.completion).sort(() => 0.5 - Math.random());
+            const shuffledCompletions = shuffled(clauseData.map(item => item.completion));
 
             clauseData.forEach(item => {
                 const div = document.createElement('div');
@@ -2031,16 +2248,31 @@
             }
         ];
 
+        let activeQuizQuestions = [];
+        let quizUserScore = 0;
+        let answeredQuestions = new Set();
+
         function renderQuizzes() {
             const container = document.getElementById('quizQuestionsContainer');
             container.innerHTML = '';
-            document.getElementById('quizTotal').textContent = quizQuestions.length;
+            activeQuizQuestions = shuffled(quizQuestions).map(question => {
+                const options = shuffled(question.options.map((text, optionIndex) => ({ text, optionIndex })));
+                return {
+                    ...question,
+                    options: options.map(option => option.text),
+                    correct: options.findIndex(option => option.optionIndex === question.correct)
+                };
+            });
+            quizUserScore = 0;
+            answeredQuestions = new Set();
+            document.getElementById('quizScore').textContent = quizUserScore;
+            document.getElementById('quizTotal').textContent = activeQuizQuestions.length;
 
-            quizQuestions.forEach((qObj, idx) => {
+            activeQuizQuestions.forEach((qObj, idx) => {
                 const div = document.createElement('div');
                 div.className = "bg-slate-950 border border-slate-800 rounded-xl p-5 space-y-3";
                 div.innerHTML = `
-                    <div class="text-xs font-mono text-cyan-400 font-bold">QUESTION ${idx + 1} OF ${quizQuestions.length}</div>
+                    <div class="text-xs font-mono text-cyan-400 font-bold">QUESTION ${idx + 1} OF ${activeQuizQuestions.length}</div>
                     <p class="text-sm text-slate-100 font-semibold leading-relaxed">${qObj.q}</p>
                     <div class="space-y-2 pt-2">
                         ${qObj.options.map((opt, oIdx) => `
@@ -2058,14 +2290,11 @@
             });
         }
 
-        let quizUserScore = 0;
-        let answeredQuestions = new Set();
-
         function answerQuiz(qIdx, optionIdx, btnElement) {
             if (answeredQuestions.has(qIdx)) return;
             answeredQuestions.add(qIdx);
 
-            const qObj = quizQuestions[qIdx];
+            const qObj = activeQuizQuestions[qIdx];
             const allOpts = document.querySelectorAll(`.quiz-opt-${qIdx}`);
 
             if (optionIdx === qObj.correct) {
@@ -2084,6 +2313,158 @@
 
             document.getElementById('quizScore').textContent = quizUserScore;
             document.getElementById(`quizExp-${qIdx}`).classList.remove('hidden');
+        }
+
+        let renewableProfiles = [];
+        let selectedRenewableProfile = null;
+        let renewableMatchedIds = new Set();
+        let renewableQuizQuestions = [];
+        let renewableQuizScore = 0;
+        let renewableAnsweredQuestions = new Set();
+        let previousRenewableQuizSignature = '';
+
+        function startRenewableMatchTrial() {
+            const capacity = (min, max) => randomInt(min, max);
+            renewableProfiles = [
+                { id: 'solar', label: 'Solar PV', description: `A ${capacity(5, 30)} MW array at a site receiving ${capacity(3, 7)} peak-sun hours per day.` },
+                { id: 'wind', label: 'Wind power', description: `A ${capacity(20, 100)} MW turbine site with an average wind speed of ${capacity(6, 12)} m/s.` },
+                { id: 'hydro', label: 'Hydropower', description: `A ${capacity(8, 60)} MW station supplied by a river flowing at ${capacity(20, 120)} m³/s.` },
+                { id: 'geothermal', label: 'Geothermal', description: `A ${capacity(5, 30)} MW plant using an underground reservoir at ${capacity(120, 260)}°C.` },
+                { id: 'biomass', label: 'Biomass', description: `A ${capacity(3, 25)} MW facility processing ${capacity(40, 180)} tonnes of organic feedstock each day.` }
+            ];
+            renewableMatchedIds = new Set();
+            selectedRenewableProfile = null;
+            document.getElementById('renewableMatchScore').textContent = '0';
+            document.getElementById('renewableMatchFeedback').classList.add('hidden');
+
+            const profilesContainer = document.getElementById('renewableProfilesContainer');
+            const optionsContainer = document.getElementById('renewableOptionsContainer');
+            profilesContainer.innerHTML = '';
+            optionsContainer.innerHTML = '';
+
+            shuffled(renewableProfiles).forEach(profile => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.dataset.profileId = profile.id;
+                button.className = 'renewable-profile w-full text-left p-3 bg-slate-950 border border-slate-800 hover:border-cyan-500 rounded-xl text-xs text-slate-200 cursor-pointer transition';
+                button.textContent = profile.description;
+                button.onclick = () => selectRenewableProfile(button, profile);
+                profilesContainer.appendChild(button);
+            });
+
+            shuffled(renewableProfiles).forEach(profile => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.dataset.optionId = profile.id;
+                button.className = 'renewable-option w-full text-left p-3 bg-slate-950 border border-slate-800 hover:border-emerald-500 rounded-xl text-xs font-mono text-slate-200 cursor-pointer transition';
+                button.textContent = profile.label;
+                button.onclick = () => selectRenewableOption(button, profile);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function selectRenewableProfile(button, profile) {
+            if (renewableMatchedIds.has(profile.id)) return;
+            document.querySelectorAll('.renewable-profile').forEach(element => element.classList.remove('border-cyan-500', 'bg-cyan-950/40'));
+            button.classList.add('border-cyan-500', 'bg-cyan-950/40');
+            selectedRenewableProfile = profile;
+        }
+
+        function selectRenewableOption(button, option) {
+            if (!selectedRenewableProfile || renewableMatchedIds.has(option.id)) return;
+            const feedback = document.getElementById('renewableMatchFeedback');
+            feedback.classList.remove('hidden', 'bg-emerald-950/80', 'text-emerald-400', 'border-emerald-500', 'bg-rose-950/80', 'text-rose-400', 'border-rose-500', 'border');
+            if (selectedRenewableProfile.id === option.id) {
+                renewableMatchedIds.add(option.id);
+                document.querySelector(`[data-profile-id="${option.id}"]`).classList.add('opacity-40', 'pointer-events-none', 'bg-emerald-950');
+                button.classList.add('opacity-40', 'pointer-events-none', 'bg-emerald-950');
+                document.getElementById('renewableMatchScore').textContent = renewableMatchedIds.size;
+                feedback.classList.add('bg-emerald-950/80', 'text-emerald-400', 'border', 'border-emerald-500');
+                feedback.textContent = renewableMatchedIds.size === renewableProfiles.length ? 'All five renewable technologies matched. Start a new trial to get fresh profiles.' : 'Correct match. Select another site profile.';
+                selectedRenewableProfile = null;
+                document.querySelectorAll('.renewable-profile').forEach(element => element.classList.remove('border-cyan-500', 'bg-cyan-950/40'));
+            } else {
+                feedback.classList.add('bg-rose-950/80', 'text-rose-400', 'border', 'border-rose-500');
+                feedback.textContent = 'Not quite. Keep the profile selected and try another technology.';
+            }
+        }
+
+        function makeEnergyOptions(answer, unit, step) {
+            const values = [answer, answer + step, answer - step, answer + step * 2];
+            return shuffled([...new Set(values.filter(value => value > 0))].map(value => `${value} ${unit}`));
+        }
+
+        function createRenewableQuizQuestion() {
+            const solarCapacity = randomInt(6, 24);
+            const sunHours = randomInt(3, 7);
+            const windCapacity = randomInt(20, 80);
+            const capacityFactor = [25, 30, 35, 40, 45, 50, 55][randomInt(0, 6)];
+            const batteryCapacity = randomInt(12, 72);
+            const batteryLoad = randomInt(3, 12);
+            const solarOutput = solarCapacity * sunHours;
+            const windOutput = Math.round(windCapacity * 24 * capacityFactor / 100);
+            const storageHours = Math.floor(batteryCapacity / batteryLoad);
+            return [
+                {
+                    q: `A ${solarCapacity} MW solar farm receives ${sunHours} peak-sun hours today. What is its theoretical energy output before losses?`,
+                    options: makeEnergyOptions(solarOutput, 'MWh', 1),
+                    correct: `${solarOutput} MWh`,
+                    explanation: `Theoretical output is capacity × peak-sun hours: ${solarCapacity} MW × ${sunHours} h = ${solarOutput} MWh.`
+                },
+                {
+                    q: `A ${windCapacity} MW wind farm operates at a ${capacityFactor}% capacity factor for 24 hours. Approximately how much energy does it produce?`,
+                    options: makeEnergyOptions(windOutput, 'MWh', 24),
+                    correct: `${windOutput} MWh`,
+                    explanation: `${windCapacity} MW × 24 h × ${capacityFactor}% = approximately ${windOutput} MWh.`
+                },
+                {
+                    q: `A battery stores ${batteryCapacity} MWh and supplies a constant ${batteryLoad} MW load. Approximately how many full hours can it supply?`,
+                    options: makeEnergyOptions(storageHours, 'hours', 1),
+                    correct: `${storageHours} hours`,
+                    explanation: `Divide stored energy by power: ${batteryCapacity} MWh ÷ ${batteryLoad} MW is approximately ${storageHours} hours.`
+                }
+            ];
+        }
+
+        function startRenewableQuizTrial() {
+            renewableQuizQuestions = createRenewableQuizQuestion();
+            let signature = renewableQuizQuestions.map(question => question.q).join('|');
+            while (signature === previousRenewableQuizSignature) {
+                renewableQuizQuestions = createRenewableQuizQuestion();
+                signature = renewableQuizQuestions.map(question => question.q).join('|');
+            }
+            previousRenewableQuizSignature = signature;
+            renewableQuizScore = 0;
+            renewableAnsweredQuestions = new Set();
+            document.getElementById('renewableQuizScore').textContent = '0';
+            document.getElementById('renewableQuizTotal').textContent = renewableQuizQuestions.length;
+            const container = document.getElementById('renewableQuizContainer');
+            container.innerHTML = '';
+
+            renewableQuizQuestions.forEach((question, questionIndex) => {
+                const options = shuffled(question.options.map((text, optionIndex) => ({ text, optionIndex })));
+                question.correctIndex = options.findIndex(option => option.text === question.correct);
+                const card = document.createElement('div');
+                card.className = 'bg-slate-950 border border-slate-800 rounded-xl p-5 space-y-3';
+                card.innerHTML = `<div class="text-xs font-mono text-cyan-400 font-bold">QUESTION ${questionIndex + 1} OF ${renewableQuizQuestions.length}</div><p class="text-sm text-slate-100 font-semibold leading-relaxed">${escapeHtml(question.q)}</p><div class="space-y-2">${options.map((option, optionIndex) => `<button type="button" onclick="answerRenewableQuiz(${questionIndex}, ${optionIndex}, this)" class="renewable-quiz-opt-${questionIndex} w-full text-left p-3 rounded-lg border border-slate-800 bg-slate-900 hover:bg-slate-800 text-xs text-slate-200 transition">${escapeHtml(option.text)}</button>`).join('')}</div><div id="renewableQuizExp-${questionIndex}" class="hidden p-3 rounded-lg bg-slate-900 border border-cyan-500/30 text-xs text-slate-300 leading-relaxed">${escapeHtml(question.explanation)}</div>`;
+                container.appendChild(card);
+            });
+        }
+
+        function answerRenewableQuiz(questionIndex, optionIndex, button) {
+            if (renewableAnsweredQuestions.has(questionIndex)) return;
+            renewableAnsweredQuestions.add(questionIndex);
+            const question = renewableQuizQuestions[questionIndex];
+            const options = document.querySelectorAll(`.renewable-quiz-opt-${questionIndex}`);
+            if (optionIndex === question.correctIndex) {
+                renewableQuizScore++;
+                button.classList.add('border-emerald-500', 'bg-emerald-950/80', 'text-emerald-300');
+            } else {
+                button.classList.add('border-rose-500', 'bg-rose-950/80', 'text-rose-300');
+                options[question.correctIndex].classList.add('border-emerald-500', 'bg-emerald-950/40');
+            }
+            document.getElementById('renewableQuizScore').textContent = renewableQuizScore;
+            document.getElementById(`renewableQuizExp-${questionIndex}`).classList.remove('hidden');
         }
 
         /* ==========================================================================
