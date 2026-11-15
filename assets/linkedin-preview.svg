@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="627" viewBox="0 0 1200 627">
+    <title>CYBER-ESP LinkedIn preview</title>
+    <desc>The CYBER-ESP shield and title, with English for cybersecurity professionals and the author's name.</desc>
+    <defs>
+        <linearGradient id="background" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#000814"/>
+            <stop offset="100%" stop-color="#001f49"/>
+        </linearGradient>
+        <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#1c6cff"/>
+            <stop offset="100%" stop-color="#34d9b7"/>
+        </linearGradient>
+        <clipPath id="logo-corners">
+            <rect x="800" y="174" width="280" height="280" rx="62"/>
+        </clipPath>
+    </defs>
+    <rect width="1200" height="627" fill="url(#background)"/>
+    <circle cx="1000" cy="315" r="290" fill="none" stroke="#1c6cff" stroke-opacity=".14" stroke-width="2"/>
+    <circle cx="1000" cy="315" r="235" fill="none" stroke="#1c6cff" stroke-opacity=".12" stroke-width="2"/>
+    <rect x="38" y="38" width="1124" height="551" rx="30" fill="#010d1e" fill-opacity=".72" stroke="#25405e" stroke-width="2"/>
+    <rect x="95" y="112" width="76" height="5" rx="2.5" fill="url(#accent)"/>
+    <g font-family="Inter, 'Segoe UI', Arial, sans-serif">
+        <text x="95" y="161" fill="#8bb8ff" font-size="21" font-weight="700" letter-spacing="3">CYBERSECURITY ENGLISH</text>
+        <text x="90" y="270" fill="#fff" font-size="94" font-weight="800" letter-spacing="-2">CYBER-ESP</text>
+        <text x="95" y="335" fill="#e2e8f0" font-size="30" font-weight="500">English for cybersecurity professionals</text>
+        <text x="95" y="382" fill="#a8b8ce" font-size="23">CISO, SOC &amp; ISO audit vocabulary</text>
+        <path d="M95 435h530" stroke="#25405e" stroke-width="2"/>
+        <text x="95" y="487" fill="#e2e8f0" font-size="22">Created by Anna Laitadze</text>
+        <text x="95" y="523" fill="#8bb8ff" font-size="18" letter-spacing="1">FLASHCARDS  &#x2022;  PRACTICE  &#x2022;  QUIZZES</text>
+    </g>
+    <image href="shield.png" x="800" y="174" width="280" height="280" clip-path="url(#logo-corners)"/>
+</svg>
