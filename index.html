@@ -13,14 +13,28 @@
                 extend: {
                     colors: {
                         cyber: {
-                            dark: '#090d16',
-                            card: '#111827',
-                            border: '#1e293b',
-                            accent: '#06b6d4',
+                            dark: '#001533',
+                            card: '#010d1e',
+                            border: '#11263b',
+                            accent: '#1c6cff',
                             emerald: '#10b981',
                             amber: '#f59e0b',
                             rose: '#f43f5e',
                             purple: '#a855f7'
+                        },
+                        slate: {
+                            700: '#25405e',
+                            800: '#11263b',
+                            900: '#010d1e',
+                            950: '#000814'
+                        },
+                        cyan: {
+                            300: '#b7d1ff',
+                            400: '#8bb8ff',
+                            500: '#1c6cff',
+                            600: '#1557d5',
+                            800: '#245ba8',
+                            950: '#00215e'
                         }
                     },
                     fontFamily: {
@@ -37,13 +51,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #090d16;
+            background-color: #001533;
             color: #f3f4f6;
             font-family: 'Inter', sans-serif;
-            background-image: 
-                radial-gradient(at 10% 10%, rgba(6, 182, 212, 0.08) 0px, transparent 50%),
-                radial-gradient(at 90% 90%, rgba(16, 185, 129, 0.08) 0px, transparent 50%);
-            background-attachment: fixed;
         }
 
         /* 3D Card Flip Styles */
@@ -68,25 +78,25 @@
             height: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #090d16;
+            background: #001533;
         }
         ::-webkit-scrollbar-thumb {
-            background: #1e293b;
+            background: #11263b;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #06b6d4;
+            background: #1c6cff;
         }
 
         .glow-cyan {
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.25);
+            box-shadow: 0 0 20px rgba(28, 108, 255, 0.25);
         }
         .glow-emerald {
             box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-white">
 
     <!-- Top Header Navigation -->
     <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 px-4 lg:px-8 py-3.5">
@@ -177,7 +187,7 @@
             <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-4 shadow-xl">
                 <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
                     <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-1">Category:</span>
-                    <button onclick="filterCategory('All')" id="catBtn-All" class="cat-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition bg-cyan-500 text-slate-950">All Terms</button>
+                    <button onclick="filterCategory('All')" id="catBtn-All" class="cat-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition bg-cyan-500 text-white">All Terms</button>
                     <button onclick="filterCategory('CIA Triad & ISO Standards')" id="catBtn-CIA Triad & ISO Standards" class="cat-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 transition">CIA & ISO Exam</button>
                     <button onclick="filterCategory('Threats & Attacks')" id="catBtn-Threats & Attacks" class="cat-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 transition">Threats & Attacks</button>
                     <button onclick="filterCategory('Perimeter & Defense')" id="catBtn-Perimeter & Defense" class="cat-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 transition">Defense & Controls</button>
@@ -298,7 +308,7 @@
                         <span>Previous Card</span>
                     </button>
 
-                    <button onclick="flipCard()" class="px-6 py-2.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-xl text-xs transition shadow-lg shadow-cyan-500/20 flex items-center gap-1.5">
+                    <button onclick="flipCard()" class="px-6 py-2.5 bg-cyan-500 hover:bg-cyan-600 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-cyan-500/20 flex items-center gap-1.5">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
                         <span>Flip Card</span>
                     </button>
@@ -437,7 +447,7 @@
                 </div>
 
                 <div class="mt-6 flex justify-end">
-                    <button onclick="checkClauseMatches()" class="px-5 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-xl text-xs transition">
+                    <button onclick="checkClauseMatches()" class="px-5 py-2 bg-cyan-500 hover:bg-cyan-600 text-white font-bold rounded-xl text-xs transition">
                         Check Clause Pairings
                     </button>
                 </div>
@@ -490,20 +500,20 @@
             </div>
 
             <div class="space-y-3 text-xs text-slate-300">
-                <p><strong class="text-cyan-400">Target Repository:</strong> <code class="bg-slate-950 px-2 py-0.5 rounded text-cyan-300 font-mono">Anna-Laitadze-Cyber-ESP-</code></p>
+                <p><strong class="text-cyan-400">Target Repository:</strong> <code class="bg-slate-950 px-2 py-0.5 rounded text-cyan-300 font-mono break-all">analaitadze-source/CyberSecurity-for-CISO-ISO-SOC-SIEM</code></p>
                 <p><strong class="text-emerald-400">Live Website URL:</strong></p>
                 <div class="bg-slate-950 border border-slate-800 p-3 rounded-xl font-mono text-cyan-400 flex items-center justify-between">
-                    <span id="liveUrlText">https://analaitadze-source.github.io/Anna-Laitadze-Cyber-ESP-/</span>
-                    <button onclick="copyLiveUrl()" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-xs text-slate-200 rounded">Copy</button>
+                    <span id="liveUrlText" class="min-w-0 break-all">https://analaitadze-source.github.io/CyberSecurity-for-CISO-ISO-SOC-SIEM/</span>
+                    <button onclick="copyLiveUrl()" class="ml-3 shrink-0 px-2 py-1 bg-slate-800 hover:bg-slate-700 text-xs text-slate-200 rounded">Copy</button>
                 </div>
 
                 <div class="space-y-1.5 pt-2">
                     <h4 class="font-semibold text-slate-200 text-xs">Steps to publish changes:</h4>
                     <ol class="list-decimal list-inside space-y-1 text-slate-400 font-mono text-[11px]">
                         <li>Save this generated single file as <code class="text-cyan-400">index.html</code></li>
-                        <li>Push to the repository <code class="text-cyan-400">analaitadze-source/Anna-Laitadze-Cyber-ESP-</code></li>
+                        <li>Push to the repository <code class="text-cyan-400 break-all">analaitadze-source/CyberSecurity-for-CISO-ISO-SOC-SIEM</code></li>
                         <li>In GitHub Repository Settings, go to <strong>Pages</strong></li>
-                        <li>Select <strong>Deploy from a branch</strong> → Choose <code class="text-cyan-400">main</code> or <code class="text-cyan-400">master</code> / root</li>
+                        <li>Select <strong>Deploy from a branch</strong> → Choose <code class="text-cyan-400">main</code> / root</li>
                         <li>Save and visit your live site at the URL above.</li>
                     </ol>
                 </div>
@@ -1526,13 +1536,13 @@
         function filterCategory(cat) {
             state.currentCategory = cat;
             document.querySelectorAll('.cat-filter-btn').forEach(btn => {
-                btn.classList.remove('bg-cyan-500', 'text-slate-950');
+                btn.classList.remove('bg-cyan-500', 'text-white');
                 btn.classList.add('bg-slate-800', 'text-slate-300');
             });
 
             const activeBtn = document.getElementById(`catBtn-${cat}`);
             if (activeBtn) {
-                activeBtn.classList.add('bg-cyan-500', 'text-slate-950');
+                activeBtn.classList.add('bg-cyan-500', 'text-white');
                 activeBtn.classList.remove('bg-slate-800', 'text-slate-300');
             }
             applyDeckFilters();
